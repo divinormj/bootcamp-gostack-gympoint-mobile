@@ -29,15 +29,15 @@ export default function Answer({ navigation }) {
   );
 }
 
-Answer.navigationOptions = {
+Answer.navigationOptions = ({ navigation }) => ({
   headerTitle: () => <LogoHeader />,
-  /* headerLeft: () => (
+  headerLeft: () => (
     <TouchableOpacity
       onPress={() => {
-        navigation.goBack();
+        navigation.navigate.goBack();
       }}
     >
       <Icon name="chevron-left" size={20} color="#fff" />
     </TouchableOpacity>
-  ), */
-};
+  ),
+});
