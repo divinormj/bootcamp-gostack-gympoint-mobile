@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-native';
 import { useSelector } from 'react-redux';
+import { Alert, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import api from '~/services/api';
 
@@ -14,16 +15,19 @@ export default function NewOrder({ navigation }) {
 
   async function handleNewOrder() {
     try {
-      const response = await api.post('students/help_orders', {
+      await api.post('students/help_orders', {
         student_id: id,
         question,
       });
 
-      navigation.navigate('ListOrder', { addHelpOrder: response.data });
+      const setLoading = navigation.getParam('setLoading');
+      setLoading(true);
+
+      navigation.navigate('ListOrder');
     } catch (err) {
-      if (err.message.indexOf('401') > 0) {
+      if (err.response.status === 401) {
         Alert.alert('Informe a sua pergunta.');
-      } else if (err.message.indexOf('402') > 0) {
+      } else if (err.response.status === 402) {
         Alert.alert('Aluno não cadastrado.');
       } else {
         Alert.alert('Falha ao gravar.', 'Por favor tente novamente.');
@@ -46,6 +50,15 @@ export default function NewOrder({ navigation }) {
   );
 }
 
-NewOrder.navigationOptions = {
+NewOrder.navigationOptions = ({ navigation }) => ({
   headerTitle: () => <LogoHeader />,
-};
+  headerLeft: () => (
+    <TouchableOpacity
+      onPress={() => {
+        navigation.goBack();
+      }}
+    >
+      <Icon name="chevron-left" size={24} color="#000" />
+    </TouchableOpacity>
+  ),
+});

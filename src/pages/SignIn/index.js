@@ -23,6 +23,7 @@ export default function SignIn() {
       <Form>
         <FormInput
           placeholder="Informe seu ID de cadastro"
+          keyboardType="numeric"
           returnKeyType="send"
           onSubmitEditing={handleSubmit}
           value={id}

@@ -12,7 +12,6 @@ export function* signIn({ payload }) {
 
     yield put(signSuccess(id));
   } catch (err) {
-    console.tron.log('falha', err);
     Alert.alert('Falha ao entrar no sistema', 'Aluno não cadastrado.');
     yield put(signFailure());
   }

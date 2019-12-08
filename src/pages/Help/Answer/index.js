@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Icon } from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import LogoHeader from '~/components/LogoHeader';
 import { Container, Help, Info, Label, Time, HelpText } from './styles';
@@ -34,10 +34,10 @@ Answer.navigationOptions = ({ navigation }) => ({
   headerLeft: () => (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate.goBack();
+        navigation.goBack();
       }}
     >
-      <Icon name="chevron-left" size={20} color="#fff" />
+      <Icon name="chevron-left" size={24} color="#000" />
     </TouchableOpacity>
   ),
 });
