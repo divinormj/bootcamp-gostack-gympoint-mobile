@@ -39,7 +39,7 @@ export default function NewOrder({ navigation }) {
     <Container>
       <QuestionText
         multiline
-        numberOfLines={10}
+        numberOfLines={8}
         textAlignVertical="top"
         placeholder="Inclua seu pedido de auxílio"
         value={question}
